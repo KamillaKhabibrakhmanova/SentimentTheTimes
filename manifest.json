@@ -1,0 +1,26 @@
+{
+	"name": "UnHappy Times",
+	"version": "1.0",
+	"manifest_version": 2,
+	"description": "Chrome extensions for the NYTimes homepage",
+	"permissions": [
+	  "storage", "http://*/*" 
+	],
+	"icons": {
+		"128": "cat.png"
+	},
+	"background": 
+	{
+    	"page": "background.html"
+	},
+	"browser_action": {
+		"default_icon": "cat.png"
+	},
+	"content_scripts": [ {
+		"js": ["jquery.js", "content_script.js"],
+		"matches": [ "http://www.nytimes.com/*" ],
+		"run_at": "document_end"
+	} ],
+	"minimum_chrome_version": "18",
+	"content_security_policy": "default-src 'none'; script-src 'self'"
+}
