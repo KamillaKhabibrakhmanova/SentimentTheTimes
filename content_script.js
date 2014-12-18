@@ -82,9 +82,7 @@ articles.forEach(function(article){
 	article.author = article.author.toUpperCase();
 })
 
-$.get( "http://localhost:3001/articles", function( data ) {
-  console.log(data);
-});
+
 
 
 $(document).ready(function() {
@@ -105,11 +103,19 @@ $(document).ready(function() {
 	// 	}
 	// });
 	//finding article elements and editing texts
-	$('.collection').each(function( index ) {
-		$(this).find('.byline').text("By " + articles[index]['author']);
-		$(this).find('.story-heading').html("<a href =\'" + articles[index]['url'] + "\'>" + articles[index]["title"]+"</a>");
-		$(this).find('.summary').text(articles[index]["snippet"]);
-	})
+	$.get( "http://localhost:3001/articles", function( data ) {
+  		var article_array;
+  		article_array = data;
+  		
+  		console.log(article_array);
+  		$('.collection').each(function( index ) {
+			//$(this).find('.byline').text("By " + articles[index]['author']);
+			$(this).find('.story-heading').html("<a href =\'" + article_array[index]['url'] + "\'>" + "CHANGED " + article_array[index]["headline"]+"</a>");
+			$(this).find('.summary').text("CHANGING" + article_array[index]["snippet"]);
+		})
+	});
+
+	
 	
 
 });
