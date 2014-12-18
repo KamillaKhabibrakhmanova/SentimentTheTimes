@@ -4,8 +4,6 @@ var script = document.createElement('script');
 script.src = 'http://code.jquery.com/jquery-1.11.0.min.js';
 script.type = 'text/javascript';
 
-console.log(Article);
-
 //fake test article info
 var articles = [
 {
@@ -83,6 +81,10 @@ var articles = [
 articles.forEach(function(article){
 	article.author = article.author.toUpperCase();
 })
+
+$.get( "http://localhost:3001/articles", function( data ) {
+  console.log(data);
+});
 
 
 $(document).ready(function() {

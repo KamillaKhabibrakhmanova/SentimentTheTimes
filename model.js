@@ -1,10 +1,14 @@
 'use strict';
 
-var mongoose = require('mongoose'),
-    Schema = mongoose.Schema,
- 	myConnection = Mongoose.createConnection('localhost', 'mydatabase');
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/wikistack');
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
 
-var ArticleSchema = new Mongoose.schema({
+var Article;
+var Schema = mongoose.Schema;
+
+var articleSchema = new Schema({
   url: String,
   headline: String,
   snippet: String,
@@ -12,4 +16,6 @@ var ArticleSchema = new Mongoose.schema({
   articleTypeSentiment: String
 });
 
-module.exports = myConnection.model('Article', ArticleSchema);
+Article = mongoose.model('Article', articleSchema);
+
+module.exports = {'Article': Article };

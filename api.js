@@ -704,25 +704,12 @@ AlchemyAPI.prototype.relations = function(flavor, data, options, callback) {
 */
 
 
-var mongoose = require('mongoose'),
-Article2 = mongoose.model('Article');
 
-exports.findAll = function(req, res){
-  Article2.find({}, function (err,results) {
-    return res.send(results);
-  });
-};
 
 
 
 // Get list of articles
 exports.index = function(req, res) {
-  // res.send([{
-  //   "id": 1,
-  //   "name": "Max",
-  //   "band": "Maximum Pain",
-  //   "instrument": "guitar"
-  // }]);
   Article.find(function (err, articles) {
     if(err) { return handleError(res, err); }
     return res.json(200, articles);
